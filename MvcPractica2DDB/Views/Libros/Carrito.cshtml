@@ -1,0 +1,55 @@
+﻿@model List<Libro>
+@{
+    int cantidadItem = 0;
+}
+
+@if(Model.Count !=0){
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                @foreach (Libro libro in Model) {
+                <div class="card" style="width: 18rem;" style="float:left">
+                      <img src="~/images/@libro.Portada" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">@libro.Titulo</h5>
+                        <div>
+                            <input type="number" min="1" max="30" value="@cantidadItem" name="cantidadlibro" />
+                            
+                        </div>
+                      </div>
+                </div>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <a asp-action="RealizarPedido" asp-controller="Pedidos" class="btn btn-success">Finalizar Compra</a>
+        </div>
+    </div>
+}else{
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">Carrito Vacio</h1>
+                <a class="lead fw-normal text-white-50 mb-0" asp-action="Index" asp-controller="Libros">Ir a comprar</a>
+            </div>
+        </div>
+    </header>
+}
+<script>
+    $(function () {
+        $(".increment-amount").on("click", function () {
+            var itemId = $(this).data("item-id");
+            var input = $(this).siblings("input");
+            var value = parseInt(input.val()) || 0;
+            input.val(value + 1);
+            // Aquí puedes hacer una llamada AJAX al servidor para actualizar la cantidad del elemento con el ID especificado.
+        });
+        $(".decrement-amount").on("click", function () {
+            var itemId = $(this).data("item-id");
+            var input = $(this).siblings("input");
+            var value = parseInt(input.val()) || 0;
+            input.val(value - 1);
+            // Aquí puedes hacer una llamada AJAX al servidor para actualizar la cantidad del elemento con el ID especificado.
+        });
+    });
+</script>
