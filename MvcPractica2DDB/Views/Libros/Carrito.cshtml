@@ -1,7 +1,4 @@
 ﻿@model List<Libro>
-@{
-    int cantidadItem = 0;
-}
 
 @if(Model.Count !=0){
     <div class="container">
@@ -13,7 +10,7 @@
                       <div class="card-body">
                         <h5 class="card-title">@libro.Titulo</h5>
                         <div>
-                            <input type="number" min="1" max="30" value="@cantidadItem" name="cantidadlibro" />
+                            <input type="number" min="1" max="30" value="1" name="cantidadlibro" />
                             
                         </div>
                       </div>
