@@ -53,5 +53,24 @@ namespace MvcPractica2DDB.Repositories {
                 }
             }
         }
+
+        public async Task InsertPedidoAsync(int idlibro, int idusuario) {
+            DateTime today = DateTime.Today;
+            Pedido pedido = new Pedido {
+                IdPedido = this.context.Pedidos.Max(p => p.IdPedido) + 1,
+                IdFactura = 1,
+                Fecha = today,
+                IdLibro = idlibro,
+                IdUsuario = idusuario,
+                Cantidad = 1
+            };
+
+            this.context.Pedidos.Add(pedido);
+            await this.context.SaveChangesAsync();
+        }
+
+        public async Task<List<VistaPedidos>> GetAllPedidosUserAsync(int idusuario) {
+            return await this.context.VistaPedidos.Where(x => x.IdUsuario == 1).ToListAsync();
+        }
     }
 }

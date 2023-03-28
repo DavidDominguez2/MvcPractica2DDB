@@ -21,6 +21,6 @@ namespace MvcPractica2DDB.Models {
         public int IdUsuario { get; set; }
 
         [Column("CANTIDAD")]
-        public int Cantidad { get; set; }
+        public long Cantidad { get; set; }
     }
 }
